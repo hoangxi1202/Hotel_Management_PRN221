@@ -1,0 +1,71 @@
+﻿@page
+@model Hotel_Management_Web.Pages.Hotels.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    var role = Model.Role;
+}
+
+<h1>Hotels</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Hotel[0].HotelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hotel[0].Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hotel[0].Address)
+            </th>
+            @if (role == "2")
+            {
+                <th>
+                @Html.DisplayNameFor(model => model.Hotel[0].Status)
+                </th>
+            }
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Hotel) {
+    var x = @item.Status == 1 ? "Valid" : "Unvalid";
+            var y = @item.Status == 1 ? "Delete" : "Restore";
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HotelName)
+            </td>
+            <td>
+                    <img width="100px" height="100px" src="@item.Image" alt="@item.Image">
+         
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+             @if (role == "2")
+            {
+                <td>
+                @x
+                </td>
+            }          
+            <td>
+                    @if (role == "2")
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.HotelId">Edit |</a> 
+                        <a asp-page="./Details" asp-route-id="@item.HotelId">Details |</a> 
+                        <a asp-page="./Delete" asp-route-id="@item.HotelId">@y</a>
+                    }
+                
+                    <form method="post" asp-page="/Rooms/Index">
+                        <button type="submit" name="myButton" value="@item.HotelId">Choose it</button>
+                    </form>
+            
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

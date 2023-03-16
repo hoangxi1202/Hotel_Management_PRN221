@@ -1,0 +1,79 @@
+﻿@page
+@model Hotel_Management_Web.Pages.Rooms.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    var role = Model.Role;
+}
+
+<h1>Rooms</h1>
+@if (role == "2")
+            {
+                <p>
+    <a asp-page="Create">Create New</a>
+</p>
+            }
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Room[0].RoomDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room[0].RoomPrice)
+            </th>
+            @if (role == "2")
+            {
+               <th>
+                @Html.DisplayNameFor(model => model.Room[0].Status)
+            </th>
+            }
+            
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Room) {
+            var x = @item.Status == 1 ? "Valid" : "Unvalid";
+            var y = @item.Status == 1 ? "Delete" : "Restore";
+            <tr>
+                <td>
+                    <img width="100px" height="100px" src="@item.ImageString" alt="@item.ImageString">
+            </td>
+               
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomPrice)
+            </td>
+            
+            @if (role == "2")
+            {
+                    <td>
+                        @x
+                        </td>
+            }
+                
+            <td>
+                    @if (role == "2")
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.RoomId">Edit |</a>
+                        <a asp-page="./Details" asp-route-id="@item.RoomId">Details |</a> 
+                        <a asp-page="./Delete" asp-route-id="@item.RoomId">@y</a>
+                    }
+                    else
+                    {
+                        <a asp-page="/BookingDetails/Create"  asp-route-id="@item.RoomId">Booking Now</a>
+                    }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

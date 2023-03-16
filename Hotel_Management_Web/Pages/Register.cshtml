@@ -1,0 +1,61 @@
+﻿@page
+@model PhanNhatHoangRazorPages.Pages.RegisterModel
+@{
+   
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+</head>
+<body>
+
+    <h3>Register Form</h3>
+    <h3 style="color: red;">@Model.ao</h3>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+               
+                <div class="form-group">
+                   
+                    <label asp-for="Customer.CustomerName" class="control-label"></label>
+                    <input asp-for="Customer.CustomerName" class="form-control" />
+                    <span asp-validation-for="Customer.CustomerName" class="text-danger"></span>
+                </div>
+                 <div class="form-group">
+
+                    <label asp-for="Customer.Email" class="control-label"></label>
+                    <input asp-for="Customer.Email" class="form-control" /><h6>"__@@Email.com"</h6>
+                    <h5 style="color: red;">@Model.bi</h5>
+                </div>
+                <div class="form-group">
+                    
+                    <label asp-for="Customer.Phone" class="control-label"></label>
+                    <input asp-for="Customer.Phone" type="number" class="form-control" />
+                    <span asp-validation-for="Customer.Phone" class="text-danger"></span><h6>09___ just 9 number</h6>
+                </div>
+               
+                <div class="form-group">
+                    <label asp-for="Customer.Address" class="control-label"></label>
+                    <input asp-for="Customer.Address" class="form-control" />
+                    <span asp-validation-for="Customer.Address" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Customer.Password" class="control-label"></label>
+                    <input asp-for="Customer.Password" class="form-control" />
+                    <span asp-validation-for="Customer.Password" class="text-danger"></span>
+                </div>
+             
+              
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿@page
+@model Hotel_Management_Web.Pages.BookingDetails.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    var hotelName = Model.HotelName;
+}
+
+<h1>BookingDetails</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingDetail[0].Price)
+            </th> 
+            <th>
+                <form method="post" asp-page="/BookingDetails/Create" asp-page-handler="CheckOut">
+                <input type="submit" value="Check Out" />
+            </form>
+            </th>  
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.BookingDetail) {
+        <tr>
+                <td>
+                    @hotelName - @Html.DisplayFor(modelItem => item.RoomId)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>           
+            <td>
+                    <a asp-page="./Edit" asp-route-id="@Model.BookingDetail.IndexOf(item)">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.BookingDetailId">Details</a> |
+                    <a asp-page="./Index" asp-page-handler="Delete" asp-route-id="@Model.BookingDetail.IndexOf(item)">Delete</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

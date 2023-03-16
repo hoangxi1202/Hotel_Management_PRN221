@@ -1,0 +1,74 @@
+﻿@page
+@model Hotel_Management_Web.Pages.ManageStaff.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<form method="post">
+    <div class="form-group">
+
+        <input type="Text" name="lop" />
+
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+<a asp-page="Index" asp-page-handler="Log">Logout</a>
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Room[0].StaffId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room[0].HotelId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room[0].StaffName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room[0].Password)
+            </th><th>
+                @Html.DisplayNameFor(model => model.Room[0].Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Room) {
+        <tr>
+            <td>
+                    @Html.DisplayFor(modelItem => item.StaffId)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.HotelId)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.StaffName)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+            </td>
+                  <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+            <td>
+                    <a asp-page="./Edit" asp-route-id="@item.StaffId">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.StaffId">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.StaffId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+

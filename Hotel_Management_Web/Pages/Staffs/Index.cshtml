@@ -1,0 +1,57 @@
+﻿@page
+@model Hotel_Management_Web.Pages.Staffs.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "LayoutStaff";
+}
+
+<h1>Profile</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.staff[0].StaffName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.staff[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.staff[0].Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.staff[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.staff[0].Hotel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.staff) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StaffName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hotel.HotelName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.StaffId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.StaffId">Details</a>              
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
