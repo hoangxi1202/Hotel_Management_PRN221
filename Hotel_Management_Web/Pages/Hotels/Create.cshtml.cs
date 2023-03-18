@@ -24,7 +24,7 @@ namespace Hotel_Management_Web.Pages.Hotels
             {
                 return RedirectToPage("/Error");
             }
-            else if (role != "3")
+            else if (role != "2")
             {
                 return RedirectToPage("/Error");
             }
