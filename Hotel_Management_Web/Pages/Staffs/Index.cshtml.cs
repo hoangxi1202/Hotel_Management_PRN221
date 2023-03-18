@@ -29,7 +29,7 @@ namespace Hotel_Management_Web.Pages.Staffs
             {
                 return RedirectToPage("/Welcome");
             }
-            else if (!Role.Equals("2"))
+            else if (!Role.Equals("2") || !Role.Equals("1"))
             {
                 return RedirectToPage("/Errors");
             }
