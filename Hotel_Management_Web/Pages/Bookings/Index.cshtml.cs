@@ -14,12 +14,16 @@ namespace Hotel_Management_Web.Pages.Bookings
     public class IndexModel : PageModel
     {
         private readonly IBookingRepository bookingRepository = new BookingRepository();
+        private readonly IRoomRepository roomRepository = new RoomRepository();
+
 
         public IList<Booking> Booking { get;set; }
+        
 
         public async Task<IActionResult> OnGetAsync()
         {
             string role = HttpContext.Session.GetString("role");
+            string id = HttpContext.Session.GetString("hotelId");
 
             if (role == null)
             {
@@ -29,13 +33,12 @@ namespace Hotel_Management_Web.Pages.Bookings
             {
                 if (role == "2")
                 {
-                    string id = HttpContext.Session.GetString("hotelId");
                     Booking = bookingRepository.GetByHotelID(id);
                 }
                 else if (role == "3") 
                 {
-                    string id = HttpContext.Session.GetString("id");
-                    Booking = bookingRepository.GetByCusID(id);
+                    string cusId = HttpContext.Session.GetString("id");
+                    Booking = bookingRepository.GetByCusID(cusId);
                 }
             }
             

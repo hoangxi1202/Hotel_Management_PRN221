@@ -21,8 +21,15 @@ namespace Hotel_Management_Web.Pages.Staffs
         public IActionResult OnGet()
         {
             string cont = HttpContext.Session.GetString("username");
-         
-            staff = staf.Searchingstaff(cont);
+            var role = HttpContext.Session.GetString("role");
+            if (role == null)
+            {
+                return RedirectToPage("/Error");
+            }else if(role== "1")
+            {
+                return RedirectToPage("/Error");
+            }
+                staff = staf.Searchingstaff(cont);
             return Page();
            
         }

@@ -156,17 +156,12 @@ namespace DataAccess
         {
             try
             {
-                Customer _car1 = GetCustomerbyId(cars.CustomerId);
-                if (_car1 != null)
-                {
+
                     var c = new Hotel_ManagementsContext();
                     c.Customers.Update(cars);
                     c.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception("The Customers does not already Exist");
-                }
+                
+
             }
             catch (Exception ex)
             {

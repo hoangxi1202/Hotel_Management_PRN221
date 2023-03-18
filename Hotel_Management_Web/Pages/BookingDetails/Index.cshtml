@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "Index";
     var hotelName = Model.HotelName;
+    var cart = Model.cart;
 }
 
 <h1>BookingDetails</h1>
@@ -22,11 +23,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.BookingDetail[0].Price)
             </th> 
-            <th>
+            @if (cart != null)
+            {
+                <th>
                 <form method="post" asp-page="/BookingDetails/Create" asp-page-handler="CheckOut">
                 <input type="submit" value="Check Out" />
             </form>
-            </th>  
+            </th> 
+            }
+             
             
             <th></th>
         </tr>

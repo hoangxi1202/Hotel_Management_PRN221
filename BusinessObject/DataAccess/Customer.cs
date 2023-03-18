@@ -15,7 +15,7 @@ namespace BusinessObject.DataAccess
         }
         [Required(ErrorMessage = "CustomerId is required")]
         [Display(Name = "CustomerId")]
-        [RegularExpression("^CA\\d{4,}$", ErrorMessage = "Not correct format CustomerId")]
+        [RegularExpression("^CU\\d{4,}$", ErrorMessage = "Not correct format CustomerId")]
         public string CustomerId { get; set; }
         [Required(ErrorMessage = "CustomerName is required")]
         [Display(Name = "CustomerName")]
@@ -27,7 +27,6 @@ namespace BusinessObject.DataAccess
         public string Email { get; set; }
         [Required(ErrorMessage = "Phone is required")]
         [Display(Name = "Phone")]
-        [Range(0900000000, 0999999999, ErrorMessage = "0900000000 - 0999999999")]
         public string Phone { get; set; }
         [Required(ErrorMessage = "Address is required")]
         [Display(Name = "Address")]
@@ -39,7 +38,6 @@ namespace BusinessObject.DataAccess
         public string Password { get; set; }
         [Required(ErrorMessage = "Status is required")]
         [Display(Name = "Status")]
-        [Range(0, 1, ErrorMessage = "0 - 1")]
         public int Status { get; set; }
 
         public virtual ICollection<Booking> Bookings { get; set; }

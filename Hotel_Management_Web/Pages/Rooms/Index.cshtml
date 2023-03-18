@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "Index";
     var role = Model.Role;
+    var a = Model.isOnOtherHotel;
 }
 
 <h1>Rooms</h1>
@@ -70,9 +71,16 @@
                     }
                     else
                     {
-                        <a asp-page="/BookingDetails/Create"  asp-route-id="@item.RoomId">Booking Now</a>
+                        if (a == false)
+                        {
+                            <a asp-page="/BookingDetails/Create" asp-route-id="@item.RoomId">Booking Now</a>
+                        }
+                        else
+                        {
+                            <a asp-page="/BookingDetails/Index" onclick="return confirm('You have a order on other hotel, please delete current other to order on this hotel')">Booking Now</a>
+                        }
                     }
-            </td>
+                </td>
         </tr>
 }
     </tbody>

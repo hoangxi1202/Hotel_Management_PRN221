@@ -22,19 +22,12 @@ namespace Hotel_Management_Web.Pages.Customers
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
-            string cont = HttpContext.Session.GetString("username");
-            string Id = HttpContext.Session.GetString("role");
-
-            if (HttpContext.Session.GetString("username") == null ||
-               HttpContext.Session.GetString("password") == null)
+            var role = HttpContext.Session.GetString("role");
+            if (role == null)
             {
-                return RedirectToPage("/Welcome");
+                return RedirectToPage("/Error");
             }
-            else if (!Id.Equals("3"))
-            {
-                return RedirectToPage("/Errors");
-            }
-            else if (Id.Equals("3"))
+            else if (role.Equals("3"))
             {
                 if (id == null)
                 {
@@ -49,31 +42,24 @@ namespace Hotel_Management_Web.Pages.Customers
                 }
                 return Page();
             }
-            return RedirectToPage("/Errors");
+            return Page();
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
-            string cont = HttpContext.Session.GetString("username");
-            string Id = HttpContext.Session.GetString("role");
-
-            if (HttpContext.Session.GetString("username") == null ||
-               HttpContext.Session.GetString("password") == null)
+            var role = HttpContext.Session.GetString("role");
+            if (role == null)
             {
-                return RedirectToPage("/Welcome");
+                return RedirectToPage("/Error");
             }
-            else if (!Id.Equals("3"))
+            else if (role.Equals("3"))
             {
-                return RedirectToPage("/Errors");
-            }
-            else if (Id.Equals("3"))
-            {
-                if (!ModelState.IsValid)
-                {
-                    return Page();
-                }
+                //if (!ModelState.IsValid)
+                //{
+                //    return Page();
+                //}
 
                 try
                 {
@@ -84,9 +70,9 @@ namespace Hotel_Management_Web.Pages.Customers
                     Console.WriteLine(e);
                 }
 
-                return RedirectToPage("./Index");
+                
             }
-            return RedirectToPage("/Errors");
+            return RedirectToPage("./Details", new { id = Customer.CustomerId });
         }
 
     }

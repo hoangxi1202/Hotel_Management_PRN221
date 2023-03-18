@@ -30,6 +30,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-page="/BookingDetails/Index">Your Order</a>
+                        </li>
                         @if (_session.GetString("username") == null)
                         {
                             <li class="nav-item">
@@ -45,9 +48,13 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Customers/Details" asp-route-id="@_session.GetString("id")">Profile</a>
                                 </li>
+                               
                             }
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-page="/Index" asp-page-handler="Logout">Logout</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/Bookings/Index">Your Bookings</a>
                             </li>
                         }
 
