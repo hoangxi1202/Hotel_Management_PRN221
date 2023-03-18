@@ -40,7 +40,7 @@ namespace Hotel_Management_Web.Pages.BookingDetails
                         TimeSpan Time = ngaytra - ngaymuon;
                         int TongSoNgay = Time.Days;
                         var roomid = item.BookingDetail.RoomId;
-                        item.BookingDetail.Price = roomRepository.GetRoom(roomid).RoomPrice * TongSoNgay;
+                        item.BookingDetail.Price = Math.Abs(roomRepository.GetRoom(roomid).RoomPrice * TongSoNgay);
                         BookingDetail.Add(item.BookingDetail);
 
                     }

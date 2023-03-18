@@ -21,19 +21,14 @@ namespace Hotel_Management_Web.Pages.Staffs
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
-            string cont = HttpContext.Session.GetString("username");
-            string Role = HttpContext.Session.GetString("role");
-            staff staffs = staf.GetstaffbyId(id);
 
-            if (HttpContext.Session.GetString("username") == null)
+            var role = HttpContext.Session.GetString("role");
+            if (role == null)
             {
-                return RedirectToPage("/Welcome");
+                return RedirectToPage("/Error");
             }
-            else if (!Role.Equals("2") || !Role.Equals("1"))
-            {
-                return RedirectToPage("/Errors");
-            }
-            else if ((Role.Equals("2") || Role.Equals("1")) && staffs.Email.Equals(cont))
+
+            else if (role == "2")
             {
                 if (id == null)
                 {

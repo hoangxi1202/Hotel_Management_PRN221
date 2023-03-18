@@ -23,26 +23,18 @@ namespace Hotel_Management_Web.Pages.Staffs
         {
 
             string cont = HttpContext.Session.GetString("username");
-            string Role = HttpContext.Session.GetString("role");
 
-            if (HttpContext.Session.GetString("username") == null)
+            var role = HttpContext.Session.GetString("role");
+            if (role == null)
             {
-                return RedirectToPage("/Welcome");
+                return RedirectToPage("/Error");
+            }else if(role== "1")
+            {
+                return RedirectToPage("/Error");
             }
-            else if (!Role.Equals("2") || !Role.Equals("1"))
-            {
-                return RedirectToPage("/Errors");
-            }
-            else if (Role.Equals("2"))
-            {
                 staff = staf.Searchingstaff(cont);
-                return Page();
-            }else if(Role.Equals("1"))
-            {
-                staff = staf.GetAllstaff();
-                return Page();
-            }
-            return RedirectToPage("/Errors");
+            return Page();
+           
         }
     
             public IActionResult OnGetLog()

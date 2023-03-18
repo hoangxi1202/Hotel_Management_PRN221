@@ -27,7 +27,7 @@ namespace Hotel_Management_Web.Pages
 
       
 
-        public void UpdateCustomer(Customer Customer) => CustomerManagement.Instance.AddNew(Customer);
+        public void UpdateCustomer(Customer Customer) => CustomerManagement.Instance.UpdateCar(Customer);
 
     }
 }

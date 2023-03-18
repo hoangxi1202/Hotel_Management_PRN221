@@ -94,7 +94,7 @@ namespace DataAccess
             try
             {
                 var c = new Hotel_ManagementsContext();
-                obj = c.Rooms.Where(c => c.HotelId == id).ToList();
+                obj = c.Rooms.Where(c => c.HotelId == id && c.Status==1).ToList();
 
             }
             catch (Exception ex)
