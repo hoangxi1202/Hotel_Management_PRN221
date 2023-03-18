@@ -26,14 +26,22 @@ namespace Hotel_Management_Web.Pages.Staffs
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
-            
-            string role = HttpContext.Session.GetString("role");
 
-            if (role == null || role == "3")
+            string cont = HttpContext.Session.GetString("username");
+            string Role = HttpContext.Session.GetString("role");
+            staff staffs = staf.GetstaffbyId(id);
+
+            if (HttpContext.Session.GetString("username") == null)
             {
-                return RedirectToPage("/Error");
+                return RedirectToPage("/Welcome");
             }
-            
+            else if (!Role.Equals("2") || !Role.Equals("1"))
+            {
+                return RedirectToPage("/Errors");
+            }
+            else if ((Role.Equals("2") || Role.Equals("1")) && staffs.Email.Equals(cont))
+            {
+
                 if (id == null)
                 {
                     return NotFound();
@@ -48,8 +56,8 @@ namespace Hotel_Management_Web.Pages.Staffs
                 Hotel = hotelRepository.GetHotel(staff.HotelId);
                 staff.Hotel = Hotel;
                 return Page();
-            
-           
+            }
+            return RedirectToPage("/Errors");
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
