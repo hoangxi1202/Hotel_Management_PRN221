@@ -4,10 +4,16 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "LayoutStaff";
+    var role = Model.Role;
 }
 
 <h1>Profile</h1>
-
+@if (role == "1")
+{
+    <p>
+        <a asp-page="Create">Create New Staff</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -49,7 +55,11 @@
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.StaffId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.StaffId">Details</a>              
+                <a asp-page="./Details" asp-route-id="@item.StaffId">Details</a> 
+                    @if (role == "1")
+                    {
+                        <a asp-page="./Delete" asp-route-id="@item.StaffId">Deletes</a>
+                    }
             </td>
         </tr>
 }
