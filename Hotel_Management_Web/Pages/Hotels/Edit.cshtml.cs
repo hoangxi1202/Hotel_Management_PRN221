@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BusinessObject.DataAccess;
 using DataAccess.Repository;
+using System.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace Hotel_Management_Web.Pages.Hotels
 {
@@ -21,6 +23,15 @@ namespace Hotel_Management_Web.Pages.Hotels
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
+            var role = HttpContext.Session.GetString("role");
+            if (role == null)
+            {
+                return RedirectToPage("/Error");
+            }
+            else if (role != "2")
+            {
+                return RedirectToPage("/Error");
+            }
             if (id == null)
             {
                 return NotFound();

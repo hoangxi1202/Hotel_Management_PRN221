@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "Details";
     var hotelID = Model.Room.HotelId;
+    var role = Model.Role;
 }
 
 <h1>Details</h1>
@@ -46,6 +47,10 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Room.RoomId">Edit</a> |
+    @if (role == "2")
+    {
+        <a asp-page="./Edit" asp-route-id="@Model.Room.RoomId">Edit |</a>
+    }
+    
     <a href="/Rooms?buttonValue=@hotelID">Back to List</a>
 </div>

@@ -19,11 +19,11 @@ namespace Hotel_Management_Web.Pages.Rooms
 
 
         public Room Room { get; set; }
-        
+        public string Role { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
-            
+            Role = HttpContext.Session.GetString("role");
             if (id == null)
             {
                 return NotFound();

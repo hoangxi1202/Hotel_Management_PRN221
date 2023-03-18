@@ -59,7 +59,7 @@
                         <a asp-page="./Details" asp-route-id="@item.HotelId">Details |</a> 
                         <a asp-page="./Delete" asp-route-id="@item.HotelId">@y</a>
                     }
-                
+                     <a asp-page="./Details" asp-route-id="@item.HotelId">Details |</a> 
                     <form method="post" asp-page="/Rooms/Index">
                         <button type="submit" name="myButton" value="@item.HotelId">Choose it</button>
                     </form>

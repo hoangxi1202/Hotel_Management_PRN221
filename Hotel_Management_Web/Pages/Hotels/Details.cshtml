@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    var role = Model.Role;
 }
 
 <h1>Details</h1>
@@ -38,6 +39,10 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Hotel.HotelId">Edit</a> |
+    @if (role == "2")
+    {
+        <a asp-page="./Edit" asp-route-id="@Model.Hotel.HotelId">Edit |</a>
+    }
+    
     <a asp-page="./Index">Back to List</a>
 </div>

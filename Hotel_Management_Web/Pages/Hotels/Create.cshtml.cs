@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using BusinessObject.DataAccess;
 using DataAccess.Repository;
+using Microsoft.AspNetCore.Http;
 
 namespace Hotel_Management_Web.Pages.Hotels
 {
@@ -18,6 +19,15 @@ namespace Hotel_Management_Web.Pages.Hotels
 
         public IActionResult OnGet()
         {
+            var role = HttpContext.Session.GetString("role");
+            if (role == null)
+            {
+                return RedirectToPage("/Error");
+            }
+            else if (role != "3")
+            {
+                return RedirectToPage("/Error");
+            }
             return Page();
            
         }

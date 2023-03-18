@@ -71,6 +71,7 @@
                     }
                     else
                     {
+                        <a asp-page="./Details" asp-route-id="@item.RoomId">Details |</a>
                         if (a == false)
                         {
                             <a asp-page="/BookingDetails/Create" asp-route-id="@item.RoomId">Booking Now</a>

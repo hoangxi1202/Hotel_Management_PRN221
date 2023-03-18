@@ -52,9 +52,12 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>           
             <td>
-                    <a asp-page="./Edit" asp-route-id="@Model.BookingDetail.IndexOf(item)">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.BookingDetailId">Details</a> |
+                    @if (cart != null)
+                    {
+                                            <a asp-page="./Edit" asp-route-id="@Model.BookingDetail.IndexOf(item)">Edit |</a> 
                     <a asp-page="./Index" asp-page-handler="Delete" asp-route-id="@Model.BookingDetail.IndexOf(item)">Delete</a>
+
+                    }
 
             </td>
         </tr>
