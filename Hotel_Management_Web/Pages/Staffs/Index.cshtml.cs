@@ -15,12 +15,15 @@ namespace Hotel_Management_Web.Pages.Staffs
     {
         private readonly IStaffRepository staf = new StaffRepository();
         private readonly ICustomerRepository cus = new CustomerRepository();
-
+       
+        public string Role { get; set; }
         public List<staff> staff { get;set; }
 
         public IActionResult OnGet()
         {
+
             string cont = HttpContext.Session.GetString("username");
+
             var role = HttpContext.Session.GetString("role");
             if (role == null)
             {
